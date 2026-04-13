@@ -4,6 +4,8 @@ LIB			= libasm.a
 
 SRCS		=	ft_strlen.s	\
 				ft_strcpy.s	\
+				ft_write.s	\
+				ft_strcmp.s	\
 
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror
