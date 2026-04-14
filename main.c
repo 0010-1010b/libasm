@@ -10,6 +10,7 @@ char	*ft_strcpy(char *dst, char *src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fd, const void *buf, size_t count);
 ssize_t	ft_read(int fd, void *buf, size_t count);
+char	*ft_strdup(const char *s);
 
 // https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/errnos/
 // https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
@@ -94,4 +95,13 @@ int main() {
 	printf("ft_read buffer -> ~%s~\n", buffer);
 	printf("ft_read errno -> %d\n", errno);
 	close(fd);
+
+	printf("\n------------------------------\n");
+	printf("Testing -> ft_strdup\n");
+	printf("------------------------------\n\n");
+
+	char test42[] = "Bonjour a tous\n";
+
+	printf("strdup -> %s", strdup(test42));
+	printf("ft_strdup -> %s", ft_strdup(test42));
 }

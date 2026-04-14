@@ -4,7 +4,7 @@ extern __errno_location
 
 global ft_read
 
-; ssize_t read(int rdi, void *rsi, size_t rdx);
+; ssize_t ft_read(int rdi, void *rsi, size_t rdx);
 ft_read:
 	mov rax, 0
 	syscall
