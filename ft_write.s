@@ -8,7 +8,7 @@ global ft_write
 
 ; ssize_t ft_write(int rdi, const void *rsi, size_t rdx);
 ft_write:
-	cmp BYTE rsi, 0
+	cmp rsi, 0
 	je .error
 	mov rax, 1
 	syscall
@@ -18,8 +18,8 @@ ft_write:
 
 .error:
 	neg rax
-	mov edi, eax
+	mov rbx, rax
 	call __errno_location WRT ..plt ; With reference to procedure linkage table
-	mov [rax], edi
+	mov [rax], rbx
 	mov rax, -1
 	ret

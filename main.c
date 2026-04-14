@@ -3,11 +3,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <fcntl.h>
 
 int		ft_strlen(const char *str);
 char	*ft_strcpy(char *dst, char *src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fd, const void *buf, size_t count);
+ssize_t	ft_read(int fd, void *buf, size_t count);
 
 // https://www.chromium.org/chromium-os/developer-library/reference/linux-constants/errnos/
 // https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
@@ -69,4 +71,27 @@ int main() {
 	int assembly_err = ft_write(-1, str, ft_strlen(str));
 	printf("\nft_write -> %d\n", assembly_err);
 	printf("ft_write errno -> %d\n", errno);
+
+	printf("\n------------------------------\n");
+	printf("Testing -> ft_read\n");
+	printf("------------------------------\n\n");
+
+	char buffer[155];
+	errno = 0;
+
+	int fd = open("test.txt", O_RDONLY);
+	printf("read return -> %ld\n", read(fd, buffer, 10));
+	printf("read buffer -> ~%s~\n", buffer);
+	printf("read errno -> %d\n\n", errno);
+	close(fd);
+
+	errno = 0;
+	printf("errno value after reset -> %d\n\n", errno);
+	memset(buffer, '\0', sizeof(buffer));
+
+	fd = open("test.txt", O_RDONLY);
+	printf("ft_read return -> %ld\n", ft_read(fd, buffer, 10));
+	printf("ft_read buffer -> ~%s~\n", buffer);
+	printf("ft_read errno -> %d\n", errno);
+	close(fd);
 }
